@@ -1,0 +1,21 @@
+.no-border-select .ant-select-selector {
+  border: none !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+  border-radius: unset;
+  box-shadow: none !important;
+}
+
+.no-border-select .ant-select-selector:focus {
+  outline: none !important;
+}
+
+.no-border-date {
+  border: none !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+  border-radius: unset;
+  box-shadow: none !important;
+}
+
+.no-border-date:focus {
+  outline: none !important;
+}
