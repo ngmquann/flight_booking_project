@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link
+            href="http://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .header {
+            background-color: #4caf50;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4caf50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">Ticket Purchase Confirmation</div>
+    <div class="content">
+        <p>Hello <span th:text="${name}"></span>,</p>
+        <p>
+            Thank you for your purchase! Your ticket purchase has been
+            successfully completed.
+        </p>
+        <p>
+            <strong>From:</strong>
+            <span th:text="${departureAirportName}"></span> <strong>To:</strong>
+            <span th:text="${arrivalAirportName}"></span>
+        </p>
+        <p><strong>Airline:</strong> <span th:text="${airlineName}"></span></p>
+        <p>
+            <strong>Departure Time:</strong>
+            <span th:text="${departureTime}"></span>
+        </p>
+        <p>
+            <strong>Arrival Time(Expected):</strong>
+            <span th:text="${arrivalTime}"></span>
+        </p>
+        <p><strong>Ticket Details:</strong></p>
+        <ul>
+            <li th:if="${flightCode != null and flightCode != ''}">
+                <strong>Flight Code:</strong>
+                <span th:text="${flightCode}"></span>
+            </li>
+            <li th:if="${seatNumber != null and seatNumber != ''}">
+                <strong>Seat Number:</strong>
+                <span th:text="${seatNumber}"></span>
+            </li>
+
+            <li th:if="${price != null}">
+                <strong>Total Price:</strong>
+                <span
+                        th:text="${#numbers.formatDecimal(price, 1, 'COMMA', 0, 'POINT') + ' VND'}"
+                ></span>
+            </li>
+            <li th:if="${luggage != null}">
+                <strong>Hành lý kí gửi:</strong>
+                <span
+                        th:text="${luggage}"
+                ></span>
+            </li>
+        </ul>
+        <p>
+            You can view your ticket and event details by clicking the button
+            below:
+        </p>
+        <p>
+            <a th:href="@{http://localhost:3000/profile}" class="button"
+            >View Your Ticket</a
+            >
+        </p>
+        <p>Have a safe and smooth flight!</p>
+    </div>
+    <div class="footer">
+        <p>This is an automated email, please do not reply.</p>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
