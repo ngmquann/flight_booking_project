@@ -12,6 +12,9 @@ public class TicketRequest {
     @NotNull(message = "Seat class not null")
     private String seatCLass;
 
+    @NotNull(message = "Seat not null")
+    private Long seatId;
+
     @NotNull(message = "Flight not null")
     private Long flightId;
 

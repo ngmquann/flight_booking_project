@@ -64,7 +64,7 @@ public class PaymentServiceImpl implements PaymentService {
     public String createPayment(TicketRequest ticketRequest) throws Exception{
         FlightEntity flight = flightRepository.findById(ticketRequest.getFlightId()).orElseThrow( ()-> new Exception("Flight not found") );
 
-        List<SeatEntity> seatEntityList = seatRepository.findByFlightId(flight.getId(),ticketRequest.getSeatCLass());
+        List<SeatEntity> seatEntityList = seatRepository.findSeatAvailable(flight.getId(),ticketRequest.getSeatCLass(), ticketRequest.getSeatId());
         SeatEntity seat = null;
         if (!seatEntityList.isEmpty()) {
              seat = seatEntityList.get(0);
@@ -104,7 +104,7 @@ public class PaymentServiceImpl implements PaymentService {
         vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
         vnp_Params.put("vnp_OrderType", orderType);
 
-        String returnUrl = ConfigVNPay.vnp_ReturnUrl;
+        String returnUrl = ConfigVNPay.vnp_ReturnUrl2;
         returnUrl += "?flightId=" + ticketRequest.getFlightId() + "&seatId=" + seat.getId();
 
         if(ticketRequest.getLuggageId() != null && ticketRequest.getLuggageId() != 0){
